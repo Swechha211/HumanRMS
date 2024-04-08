@@ -1,0 +1,33 @@
+syntax="proto3";
+
+option java_package = "com.grpc";
+
+
+message StaffRequest{
+  int32 staff_id = 1;
+  string name = 2;
+  string password = 3;
+  string personal_phone = 4;
+  string emergency_contact_number = 5;
+  string position = 6;
+  string join_date = 7;
+  string contact_renew_date = 8;
+}
+message  StaffResponse{
+  repeated StaffRequest staffs = 1;
+}
+
+message LoginRequest{
+  string name = 1;
+  string password =2;
+}
+message LoginResponse{
+  string JwtToken = 1;
+}
+
+
+service  AuthService{
+
+  rpc register(StaffRequest) returns (StaffResponse) {}
+  rpc login(LoginRequest) returns (LoginResponse){}
+}
